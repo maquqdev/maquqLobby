@@ -1,0 +1,7 @@
+name: maquqLobby
+version: '${project.version}'
+main: eu.boxhunt.lobby.LobbyPlugin
+api-version: '1.18'
+author: maquq
+depend:
+  - PlaceholderAPI
