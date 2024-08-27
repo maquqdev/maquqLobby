@@ -33,6 +33,10 @@ public class ItemUtil {
         this(material, 1, (short)0);
     }
 
+    public ItemUtil setUnbreakable(boolean unbreakable) {
+        meta.setUnbreakable(true);
+        return this;
+    }
 
     public ItemUtil setName(String name) {
         if (name == null) return this;

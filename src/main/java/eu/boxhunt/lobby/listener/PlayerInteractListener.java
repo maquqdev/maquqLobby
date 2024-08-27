@@ -5,8 +5,6 @@ import eu.boxhunt.lobby.gui.ChangeCustomItemGui;
 import eu.boxhunt.lobby.gui.ServerSelectorGui;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;

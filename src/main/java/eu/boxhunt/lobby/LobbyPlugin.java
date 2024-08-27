@@ -8,6 +8,7 @@ import eu.boxhunt.lobby.command.ConfigureCommand;
 import eu.boxhunt.lobby.command.GameModeCommand;
 import eu.boxhunt.lobby.command.LeaveArenaCommand;
 import eu.boxhunt.lobby.command.LobbyCommand;
+import eu.boxhunt.lobby.command.argument.GameModeArgument;
 import eu.boxhunt.lobby.command.handler.CorrectUsageHandler;
 import eu.boxhunt.lobby.command.handler.PermissionHandler;
 import eu.boxhunt.lobby.libs.InventoryManager;
@@ -27,7 +28,9 @@ import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
 import lombok.Getter;
 import lombok.val;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -76,6 +79,11 @@ public class LobbyPlugin extends JavaPlugin {
         registerManagers();
         registerListeners();
         registerCommands();
+    }
+
+    @Override
+    public void onDisable() {
+        liteCommands.unregister();
     }
 
     private void registerConfigs() {
@@ -131,12 +139,14 @@ public class LobbyPlugin extends JavaPlugin {
         pluginManager.registerEvents(new PlayerDeathListener(this), this);
         pluginManager.registerEvents(new PlayerJoinListener(this), this);
         pluginManager.registerEvents(new PlayerMoveListener(this), this);
+        pluginManager.registerEvents(new EntityDamageListener(this), this);
         pluginManager.registerEvents(new PlayerFishListener(), this);
         pluginManager.registerEvents(new PlayerBlockBreakListener(), this);
         pluginManager.registerEvents(new FoodLevelChangeListener(), this);
         pluginManager.registerEvents(new PlayerBlockPlaceListener(), this);
-        pluginManager.registerEvents(new EntityDamageListener(), this);
         pluginManager.registerEvents(new PlayerQuitListener(), this);
+        pluginManager.registerEvents(new PlayerDropItemListener(), this);
+        pluginManager.registerEvents(new InventoryListener(), this);
     }
 
     private void registerCommands() {
@@ -149,6 +159,7 @@ public class LobbyPlugin extends JavaPlugin {
                                 new LeaveArenaCommand(this)
                         )
                 )
+                .argument(GameMode.class, new GameModeArgument(this))
                 .message(LiteBukkitMessages.PLAYER_ONLY, "&cThis command is available only for players.")
                 .message(LiteBukkitMessages.PLAYER_NOT_FOUND, "&cCan't find player with this name.")
                 .invalidUsage(new CorrectUsageHandler())

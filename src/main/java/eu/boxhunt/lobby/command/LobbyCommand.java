@@ -23,6 +23,11 @@ public class LobbyCommand {
 
             sendMessage(player, lobbyPlugin.getMessageConfiguration().getLobby().getTeleported());
         });
+
+        if (lobbyPlugin.getArenaManager().isInArena(player.getUniqueId())) {
+            sendMessage(player, lobbyPlugin.getMessageConfiguration().getMisc().getLeftFromArena());
+            lobbyPlugin.getArenaManager().leaveFromArena(player);
+        }
     }
 
     @Execute
@@ -37,5 +42,10 @@ public class LobbyCommand {
                             .replace("[PLAYER]", target.getName())
             );
         });
+
+        if (lobbyPlugin.getArenaManager().isInArena(target.getUniqueId())) {
+            sendMessage(player, lobbyPlugin.getMessageConfiguration().getMisc().getLeftFromArena());
+            lobbyPlugin.getArenaManager().leaveFromArena(player);
+        }
     }
 }

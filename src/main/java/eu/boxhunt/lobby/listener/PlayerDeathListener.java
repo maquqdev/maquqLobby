@@ -16,9 +16,10 @@ public class PlayerDeathListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerDeath(PlayerDeathEvent event) {
         val player = event.getEntity();
+        player.spigot().respawn();
+        event.getDrops().clear();
 
         lobbyPlugin.getArenaManager().leaveFromArena(player);
-        event.getDrops().clear();
         event.setDeathMessage(null);
     }
 }

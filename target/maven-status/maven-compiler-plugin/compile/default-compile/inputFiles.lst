@@ -15,9 +15,11 @@ C:\Users\User\Desktop\projekty\Lobby\src\main\java\eu\boxhunt\lobby\listener\Pla
 C:\Users\User\Desktop\projekty\Lobby\src\main\java\eu\boxhunt\lobby\command\argument\GameModeArgument.java
 C:\Users\User\Desktop\projekty\Lobby\src\main\java\eu\boxhunt\lobby\libs\opener\InventoryOpener.java
 C:\Users\User\Desktop\projekty\Lobby\src\main\java\eu\boxhunt\lobby\libs\content\InventoryProvider.java
+C:\Users\User\Desktop\projekty\Lobby\src\main\java\eu\boxhunt\lobby\listener\InventoryListener.java
 C:\Users\User\Desktop\projekty\Lobby\src\main\java\eu\boxhunt\lobby\libs\content\SlotPos.java
 C:\Users\User\Desktop\projekty\Lobby\src\main\java\eu\boxhunt\lobby\libs\InventoryManager.java
 C:\Users\User\Desktop\projekty\Lobby\src\main\java\eu\boxhunt\lobby\libs\opener\SpecialInventoryOpener.java
+C:\Users\User\Desktop\projekty\Lobby\src\main\java\eu\boxhunt\lobby\listener\PlayerDropItemListener.java
 C:\Users\User\Desktop\projekty\Lobby\src\main\java\eu\boxhunt\lobby\command\GameModeCommand.java
 C:\Users\User\Desktop\projekty\Lobby\src\main\java\eu\boxhunt\lobby\storage\config\PluginConfiguration.java
 C:\Users\User\Desktop\projekty\Lobby\src\main\java\eu\boxhunt\lobby\command\handler\CorrectUsageHandler.java

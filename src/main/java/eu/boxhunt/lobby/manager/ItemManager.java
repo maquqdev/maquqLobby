@@ -35,8 +35,11 @@ public class ItemManager {
 
             ItemStack chosenItem = user.getChosenItem();
 
-            val slot = lobbyPlugin.getPluginConfiguration().getFunctionalItemSlot(chosenItem);
+            var slot = lobbyPlugin.getPluginConfiguration().getFunctionalItemSlot(chosenItem);
             if (slot == null) return;
+            if(!chosenItem.equals(lobbyPlugin.getPluginConfiguration().getFunctionalItems().values().stream().findFirst().orElse(null).getItem()))
+                slot -= 1;
+
             inventory.setItem(slot, chosenItem);
 
             healPlayer(player);

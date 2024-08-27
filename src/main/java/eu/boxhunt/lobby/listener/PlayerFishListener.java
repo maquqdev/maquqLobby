@@ -20,13 +20,15 @@ public class PlayerFishListener implements Listener {
 
         val state = event.getState();
         if(state == PlayerFishEvent.State.FISHING) fishLocation.put(player.getUniqueId(), event.getHook().getLocation());
-        else if(state == PlayerFishEvent.State.REEL_IN) {
+        else if(state == PlayerFishEvent.State.REEL_IN || state == PlayerFishEvent.State.IN_GROUND) {
             val location = fishLocation.get(player.getUniqueId());
             if(location == null) return;
 
-            player.setVelocity(location.getDirection().multiply(4));
-//            val pushVector = location.toVector().subtract(player.getLocation().toVector()).normalize().multiply(3);
-//            player.setVelocity(pushVector);
+            val clone = location.clone();
+            val playerLocation = player.getLocation();
+            clone.setPitch(playerLocation.getPitch());
+            clone.setYaw(playerLocation.getYaw());
+            player.setVelocity(clone.getDirection().multiply(4));
 
             fishLocation.remove(player.getUniqueId());
         }
