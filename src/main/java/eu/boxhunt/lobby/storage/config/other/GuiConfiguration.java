@@ -109,4 +109,17 @@ public class GuiConfiguration extends OkaeriConfig {
                         .build()
         );
     }}};
+
+    private String cosmeticChooseTitle = "&aChose new cosmetic";
+    private int cosmeticChangeRows = 1;
+    @Comment("First = clearing cosmetics, other are just filters lol")
+    private Map<Integer, ItemStack> cosmeticClear = new HashMap<>() {{{
+        put(
+                8,
+                new ItemUtil(Material.BARRIER)
+                        .setName("&cClear cosmetics!")
+                        .addLore("&fYou can clear your actual cosmetics by clicking this item.")
+                        .build()
+        );
+    }}};
  }

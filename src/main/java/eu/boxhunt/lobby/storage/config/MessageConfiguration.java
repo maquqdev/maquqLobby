@@ -54,5 +54,9 @@ public class MessageConfiguration extends OkaeriConfig {
 
         private String notInArena = "&cYou're not in arena!";
         private String leftFromArena = "&cLeft froma pvp pit!";
+
+        private String setCosmetic = "&aYou have set your new cosmetic correctly!";
+        private String clearCosmetic = "&cCleared cosmetics!";
+        private String dontHaveCosmetic = "&cYou don't have any cosmetic chosen!";
     }
 }

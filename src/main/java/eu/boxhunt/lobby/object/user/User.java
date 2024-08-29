@@ -1,5 +1,6 @@
 package eu.boxhunt.lobby.object.user;
 
+import eu.boxhunt.lobby.object.Cosmetic;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,8 @@ public class User {
     private ItemStack chosenItem;
 
     private Player player;
+
+    private Cosmetic cosmetic = null;
     private boolean visiblePlayers = true;
 
     public User(UUID uuid) {

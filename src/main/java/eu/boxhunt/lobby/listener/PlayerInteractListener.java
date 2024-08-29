@@ -2,6 +2,7 @@ package eu.boxhunt.lobby.listener;
 
 import eu.boxhunt.lobby.LobbyPlugin;
 import eu.boxhunt.lobby.gui.ChangeCustomItemGui;
+import eu.boxhunt.lobby.gui.CosmeticChangeGui;
 import eu.boxhunt.lobby.gui.ServerSelectorGui;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -55,6 +56,11 @@ public class PlayerInteractListener implements Listener {
                         .ifPresent(user ->
                                 lobbyPlugin.getArenaManager().joinToArena(user, true)
                         );
+            }
+
+            case "cosmeticMenu" -> {
+                new CosmeticChangeGui(lobbyPlugin)
+                        .open(player);
             }
         }
     }

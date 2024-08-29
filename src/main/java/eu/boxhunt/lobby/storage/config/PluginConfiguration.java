@@ -1,5 +1,6 @@
 package eu.boxhunt.lobby.storage.config;
 
+import eu.boxhunt.lobby.object.CosmeticType;
 import eu.boxhunt.lobby.object.ItemAction;
 import eu.boxhunt.lobby.utils.ItemUtil;
 import eu.okaeri.configs.OkaeriConfig;
@@ -11,6 +12,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -24,52 +26,61 @@ public class PluginConfiguration extends OkaeriConfig {
             .build();
 
 
-
     @Comment("Available actions: serverSelector, pvp, hidePlayers, showPlayers")
     @Comment("key = slot")
-    private Map<Integer, ItemAction> items = new ConcurrentHashMap<>() {{{
-        put(
-            1,
-                new ItemAction(
-                        new ItemUtil(Material.NETHER_STAR)
-                                .setName("&bServer selector")
-                                .build(),
-                        "serverSelector"
-                )
-        );
+    private Map<Integer, ItemAction> items = new ConcurrentHashMap<>() {{
+        {
+            put(
+                    1,
+                    new ItemAction(
+                            new ItemUtil(Material.NETHER_STAR)
+                                    .setName("&bServer selector")
+                                    .build(),
+                            "serverSelector"
+                    )
+            );
 
-        put(
-                9,
-                new ItemAction(
-                        new ItemUtil(Material.YELLOW_DYE)
-                                .setName("&aChange visibility")
-                                .build(),
-                        "changeVisibility"
-                )
-        );
+            put(
+                    9,
+                    new ItemAction(
+                            new ItemUtil(Material.YELLOW_DYE)
+                                    .setName("&aChange visibility")
+                                    .build(),
+                            "changeVisibility"
+                    )
+            );
 
-        put(
-                5,
-                new ItemAction(
-                        new ItemUtil(Material.DIAMOND_SWORD)
-                                .setName("&aEnable PVP")
-                                .build(),
-                        "pvp"
-                )
-        );
+            put(
+                    5,
+                    new ItemAction(
+                            new ItemUtil(Material.DIAMOND_SWORD)
+                                    .setName("&aEnable PVP")
+                                    .build(),
+                            "pvp"
+                    )
+            );
 
-        put(6,
-                new ItemAction(
-                        new ItemUtil(Material.COMPASS)
-                                .setName("&fChange custom item")
-                                .build(),
-                        "changeCustomItem"
-                )
+            put(6,
+                    new ItemAction(
+                            new ItemUtil(Material.COMPASS)
+                                    .setName("&fChange custom item")
+                                    .build(),
+                            "changeCustomItem"
+                    )
 
-        );
+            );
 
+            put(5,
+                    new ItemAction(
+                            new ItemUtil(Material.CAULDRON)
+                                    .setName("&6Change cosmetic menu")
+                                    .build(),
+                            "cosmeticMenu"
+                    )
 
-    }}};
+            );
+        }
+    }};
 
     @Comment("Available actions: pushPlayer, hookPlayer")
     @Comment("First option is always default.")
@@ -103,6 +114,46 @@ public class PluginConfiguration extends OkaeriConfig {
         }
     }};
 
+
+    public Map<CosmeticType, ItemStack> cosmetics = new HashMap<>() {{
+        {
+            put(
+                    CosmeticType.CIRCLE,
+                    new ItemUtil(Material.LIGHT_GRAY_DYE)
+                            .setName("&7Circle")
+                            .build()
+            );
+
+            put(
+                    CosmeticType.WINGS,
+                    new ItemUtil(Material.PURPLE_DYE)
+                            .setName("&5Wings")
+                            .build()
+            );
+
+            put(
+                    CosmeticType.FOUNTAIN,
+                    new ItemUtil(Material.BLUE_DYE)
+                            .setName("&bFountain")
+                            .build()
+            );
+
+            put(
+                    CosmeticType.HELIX,
+                    new ItemUtil(Material.WHITE_DYE)
+                            .setName("&fHelix")
+                            .build()
+            );
+
+            put(
+                    CosmeticType.SPIRAL,
+                    new ItemUtil(Material.CAMPFIRE)
+                            .setName("&cRed spiral")
+                            .build()
+            );
+        }
+    }};
+
     public String getAction(ItemStack itemStack) {
         String action = getActionFromItems(itemStack);
         if (action == null) {
@@ -129,24 +180,6 @@ public class PluginConfiguration extends OkaeriConfig {
 
     public Integer getFunctionalItemSlot(ItemStack itemStack) {
         return functionalItems.entrySet()
-                .stream()
-                .filter(entry -> entry.getValue().getItem().isSimilar(itemStack))
-                .map(Map.Entry::getKey)
-                .findFirst()
-                .orElse(null);
-    }
-
-    public ItemStack getItemByAction(String action) {
-        return functionalItems.values()
-                .stream()
-                .filter(itemAction -> itemAction.getAction().equalsIgnoreCase(action))
-                .map(ItemAction::getItem)
-                .findFirst()
-                .orElse(null);
-    }
-
-    public Integer getItemStackSlot(ItemStack itemStack) {
-        return items.entrySet()
                 .stream()
                 .filter(entry -> entry.getValue().getItem().isSimilar(itemStack))
                 .map(Map.Entry::getKey)

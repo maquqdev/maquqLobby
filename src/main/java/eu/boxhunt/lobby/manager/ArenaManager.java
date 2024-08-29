@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static org.bukkit.Bukkit.getServer;
+
 @RequiredArgsConstructor
 public class ArenaManager {
 
@@ -36,8 +38,15 @@ public class ArenaManager {
         player.closeInventory();
 
         arenaPlayers.remove(player.getUniqueId());
-        lobbyPlugin.getItemManager().giveItems(player);
-        player.teleportAsync(lobbyPlugin.getPluginConfiguration().getLobby());
+        player.teleportAsync(lobbyPlugin.getPluginConfiguration().getLobby()).thenAccept(accept ->{
+            if (!accept) return;
+
+            getServer().getScheduler().runTaskLater(
+                    LobbyPlugin.getInstance(),
+                    () ->
+                            lobbyPlugin.getItemManager().giveItems(player), 20L
+            );
+        });
     }
 
     public boolean isInArena(UUID uuid) {

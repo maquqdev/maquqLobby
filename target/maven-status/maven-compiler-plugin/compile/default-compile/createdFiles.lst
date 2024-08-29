@@ -1,10 +1,14 @@
+eu\boxhunt\lobby\listener\PlayerToggleFlightListener.class
 eu\boxhunt\lobby\libs\content\SlotPos.class
 eu\boxhunt\lobby\listener\PlayerMoveListener.class
+eu\boxhunt\lobby\storage\config\PluginConfiguration$3.class
 eu\boxhunt\lobby\listener\PlayerJoinListener.class
 eu\boxhunt\lobby\libs\opener\ChestInventoryOpener.class
+eu\boxhunt\lobby\task\CosmeticTask.class
 eu\boxhunt\lobby\libs\content\SlotIterator$1.class
 eu\boxhunt\lobby\listener\InventoryListener.class
 eu\boxhunt\lobby\gui\ChangeCustomItemGui.class
+eu\boxhunt\lobby\storage\config\other\GuiConfiguration$4.class
 eu\boxhunt\lobby\manager\user\UserManager.class
 eu\boxhunt\lobby\object\user\User.class
 eu\boxhunt\lobby\command\argument\GameModeArgument.class
@@ -25,6 +29,7 @@ eu\boxhunt\lobby\libs\opener\InventoryOpener.class
 eu\boxhunt\lobby\libs\content\Pagination.class
 eu\boxhunt\lobby\utils\TextUtil.class
 eu\boxhunt\lobby\LobbyPlugin.class
+eu\boxhunt\lobby\object\Cosmetic.class
 eu\boxhunt\lobby\listener\PlayerFishListener.class
 eu\boxhunt\lobby\command\handler\PermissionHandler.class
 eu\boxhunt\lobby\object\region\Selector.class
@@ -39,8 +44,10 @@ eu\boxhunt\lobby\listener\PlayerQuitListener.class
 eu\boxhunt\lobby\libs\SmartInventory$Builder.class
 eu\boxhunt\lobby\libs\InventoryManager.class
 eu\boxhunt\lobby\object\Kit.class
+eu\boxhunt\lobby\gui\CosmeticChangeGui.class
 eu\boxhunt\lobby\command\GameModeCommand.class
 eu\boxhunt\lobby\listener\PlayerDropItemListener.class
+eu\boxhunt\lobby\object\Cosmetic$1.class
 eu\boxhunt\lobby\listener\PlayerAsynChatListener.class
 eu\boxhunt\lobby\libs\content\InventoryContents.class
 eu\boxhunt\lobby\storage\config\MessageConfiguration$Configure.class
@@ -56,6 +63,7 @@ eu\boxhunt\lobby\manager\ArenaManager.class
 eu\boxhunt\lobby\storage\config\MessageConfiguration$Gamemode.class
 eu\boxhunt\lobby\libs\content\SlotIterator$Type.class
 eu\boxhunt\lobby\command\LeaveArenaCommand.class
+eu\boxhunt\lobby\object\CosmeticType.class
 eu\boxhunt\lobby\manager\ItemManager.class
 eu\boxhunt\lobby\gui\ServerSelectorGui.class
 eu\boxhunt\lobby\libs\content\SlotIterator$Impl.class

@@ -37,6 +37,7 @@ public class ItemManager {
 
             var slot = lobbyPlugin.getPluginConfiguration().getFunctionalItemSlot(chosenItem);
             if (slot == null) return;
+            //XDDDDDDDDDDDDDD shame, TODO: do a better system.
             if(!chosenItem.equals(lobbyPlugin.getPluginConfiguration().getFunctionalItems().values().stream().findFirst().orElse(null).getItem()))
                 slot -= 1;
 

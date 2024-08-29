@@ -21,6 +21,7 @@ public class PlayerJoinListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        player.setAllowFlight(true);
         User user = lobbyPlugin.getUserManager().compute(player.getUniqueId()).join();
         user.setPlayer(player);
         user.setChosenItem(lobbyPlugin.getPluginConfiguration().getFunctionalItems().values().stream().findFirst().orElse(null).getItem());

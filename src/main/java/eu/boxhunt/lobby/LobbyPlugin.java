@@ -4,10 +4,7 @@ import dev.rollczi.litecommands.LiteCommands;
 import dev.rollczi.litecommands.annotations.LiteCommandsAnnotations;
 import dev.rollczi.litecommands.bukkit.LiteBukkitFactory;
 import dev.rollczi.litecommands.bukkit.LiteBukkitMessages;
-import eu.boxhunt.lobby.command.ConfigureCommand;
-import eu.boxhunt.lobby.command.GameModeCommand;
-import eu.boxhunt.lobby.command.LeaveArenaCommand;
-import eu.boxhunt.lobby.command.LobbyCommand;
+import eu.boxhunt.lobby.command.*;
 import eu.boxhunt.lobby.command.argument.GameModeArgument;
 import eu.boxhunt.lobby.command.handler.CorrectUsageHandler;
 import eu.boxhunt.lobby.command.handler.PermissionHandler;
@@ -22,6 +19,7 @@ import eu.boxhunt.lobby.storage.config.MessageConfiguration;
 import eu.boxhunt.lobby.storage.config.PluginConfiguration;
 import eu.boxhunt.lobby.storage.config.other.ArenaConfiguration;
 import eu.boxhunt.lobby.storage.config.other.serializer.KitSerializer;
+import eu.boxhunt.lobby.task.CosmeticTask;
 import eu.okaeri.configs.ConfigManager;
 import eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer;
 import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
@@ -30,7 +28,6 @@ import lombok.val;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -44,11 +41,11 @@ public class LobbyPlugin extends JavaPlugin {
         - More custom kits (premium, other kits),
         - Custom kit layout,
         - Multiply arenas,
-        - Cosmetics,
+        - Cosmetics, DONE!!
         - More commands,
         - Implement efficiently particles on pvp arena borders,
         - KillStreak leaderboard on Pvp arena,
-        - Double jump (set available to fly, set flying false - if not on gamemode),
+        - Double jump (set available to fly, set flying false - if not on gamemode) -- FIX!!!,
         - LaunchPad.
      */
 
@@ -79,6 +76,7 @@ public class LobbyPlugin extends JavaPlugin {
         registerManagers();
         registerListeners();
         registerCommands();
+        registerTasks();
     }
 
     @Override
@@ -141,12 +139,19 @@ public class LobbyPlugin extends JavaPlugin {
         pluginManager.registerEvents(new PlayerMoveListener(this), this);
         pluginManager.registerEvents(new EntityDamageListener(this), this);
         pluginManager.registerEvents(new PlayerFishListener(), this);
+        pluginManager.registerEvents(new PlayerQuitListener(this), this);
+//        pluginManager.registerEvents(new PlayerToggleFlightListener(this), this);
         pluginManager.registerEvents(new PlayerBlockBreakListener(), this);
         pluginManager.registerEvents(new FoodLevelChangeListener(), this);
         pluginManager.registerEvents(new PlayerBlockPlaceListener(), this);
-        pluginManager.registerEvents(new PlayerQuitListener(), this);
         pluginManager.registerEvents(new PlayerDropItemListener(), this);
         pluginManager.registerEvents(new InventoryListener(), this);
+    }
+
+    private void registerTasks() {
+        val scheduler = Bukkit.getScheduler();
+
+        scheduler.runTaskTimerAsynchronously(this, new CosmeticTask(userManager), 0L, 2);
     }
 
     private void registerCommands() {
